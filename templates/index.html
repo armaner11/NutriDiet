@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diet Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        // Show popup after form submit
+        function showPopup() {
+            document.getElementById("popup").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("popup").style.display = "none";
+            }, 3000); // hide after 3 seconds
+        }
+    </script>
+</head>
+<body>
+    <header>
+        Arman Diet Planner
+    </header>
+
+    <h2 style="text-align:center; margin-top:100px;">Fill Your Details</h2>
+
+    <form action="/diet" method="POST" onsubmit="showPopup()">
+        <label>Veg/Non-Veg:</label>
+        <select name="diet_type">
+            <option value="Veg">Veg</option>
+            <option value="Non-Veg">Non-Veg</option>
+        </select>
+
+        <label>Age:</label>
+        <input type="number" name="age">
+
+        <label>Weight (kg):</label>
+        <input type="number" name="weight">
+
+        <label>Height (cm):</label>
+        <input type="number" name="height">
+
+        <label>Goal:</label>
+        <select name="goal">
+            <option value="Weight Loss">Weight Loss</option>
+            <option value="Muscle Gain">Muscle Gain</option>
+            <option value="Maintain">Maintain</option>
+        </select>
+
+        <label>Workout Days per Week:</label>
+        <input type="number" name="workout_days" min="0" max="7">
+
+        <button type="submit">Generate Diet Plan</button>
+    </form>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        ✅ Your diet plan will be generated successfully!
+    </div>
+</body>
+</html>
