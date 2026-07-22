@@ -73,6 +73,7 @@ def home():
     return render_template("index.html")
 
 @app.route("/diet", methods=["POST"])
+@app.route("/diet", methods=["POST"])
 def diet_plan():
     diet_type = request.form["diet_type"]
     age = request.form["age"]
@@ -83,7 +84,10 @@ def diet_plan():
 
     plan = generate_plan(7, goal, diet_type)  # Default 7-day plan
     filename = save_plan_pdf(plan)
-    return send_file(filename, as_attachment=True)
+
+    # Show result page with plan + PDF link
+    return render_template("result.html", plan=plan, pdf_file=filename)
+
 
 if __name__ == "__main__":
     import os
